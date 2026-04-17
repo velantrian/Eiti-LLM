@@ -1,5 +1,5 @@
-// VELANTRIM EITI — Service Worker v12.5
-// v12.5: sync with index.html v12.5 (bug fixes: moscAdded, vector/embedding)
+// VELANTRIM EITI — Service Worker v12.6
+// v12.6: sync with manifest.json v12.6 (bug fixes: moscAdded, vector/embedding)
 
 const CACHE_NAME = 'eiti-cache-v12.6';
 const SW_VERSION = '12.6';
