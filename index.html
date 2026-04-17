@@ -11871,7 +11871,7 @@ async function eitiActivateAIOffline() {
                 window._eitiTransformersModule = await _importWithTimeout('https://cdn.jsdelivr.net/npm/@xenova/transformers@2.17.2', 30000);
             } catch(cdnError) {
                 try {
-                    window._eitiTransformersModule = await _importWithTimeout('https://www.unpkg.com/@xenova/transformers@2.17.2', 30000);
+                    window._eitiTransformersModule = await _importWithTimeout('https://unpkg.com/@xenova/transformers@2.17.2', 30000);
                 } catch(e2) {
                     console.warn('[EITI] Transformers.js недоступен:', e2.message);
                     showToast('⚠️ AI-офлайн недоступен — продолжаем без него');
