@@ -12756,40 +12756,67 @@ window.eitiLLMExport = async function() {
     var btn = document.getElementById('llm-export-btn');
     try {
         if (btn) { btn.disabled = true; btn.textContent = '⏳…'; }
-        if (typeof showToast === 'function') showToast('📦 Сбор LLM файлов из кэша…', 2000);
-        var allKeys = await caches.keys();
-        var llmCaches = allKeys.filter(function(k) {
-            return k.toLowerCase().includes('llm') || k.toLowerCase().includes('mlc') || k.toLowerCase().includes('webllm');
+        if (typeof showToast === 'function') showToast('📦 Сбор LLM файлов из IndexedDB…', 2000);
+        // WebLLM хранит в IndexedDB — имя БД обычно 'webllm/model_cache' или похожее
+        var dbs = await indexedDB.databases();
+        var llmDbs = dbs.filter(function(db) {
+            var n = (db.name || '').toLowerCase();
+            return n.includes('webllm') || n.includes('mlc') || n.includes('model_cache') || n.includes('llm');
         });
-        if (!llmCaches.length) {
-            if (typeof showToast === 'function') showToast('❌ LLM кэш не найден. Сначала загрузите модель.', 4000);
+        if (!llmDbs.length) {
+            if (typeof showToast === 'function') showToast('❌ LLM кэш не найден в IndexedDB. Сначала загрузите модель.', 4000);
             return;
         }
         var manifest = []; var totalSize = 0;
-        for (var ci = 0; ci < llmCaches.length; ci++) {
-            var cache = await caches.open(llmCaches[ci]);
-            var requests = await cache.keys();
-            for (var ri = 0; ri < requests.length; ri++) {
-                var resp = await cache.match(requests[ri]);
-                if (!resp) continue;
-                var buf = await resp.arrayBuffer();
-                var bytes = new Uint8Array(buf);
-                var CHUNK = 8192; var b64Parts = [];
-                for (var bi = 0; bi < bytes.length; bi += CHUNK) {
-                    var chunk = bytes.subarray(bi, bi + CHUNK);
-                    var str = '';
-                    for (var si = 0; si < chunk.length; si++) str += String.fromCharCode(chunk[si]);
-                    b64Parts.push(str);
+        for (var di = 0; di < llmDbs.length; di++) {
+            var dbInfo = llmDbs[di];
+            var db = await new Promise(function(resolve, reject) {
+                var req = indexedDB.open(dbInfo.name, dbInfo.version);
+                req.onsuccess = function(e) { resolve(e.target.result); };
+                req.onerror = function(e) { reject(e.target.error); };
+            });
+            var storeNames = Array.from(db.objectStoreNames);
+            for (var si = 0; si < storeNames.length; si++) {
+                var storeName = storeNames[si];
+                var entries = await new Promise(function(resolve, reject) {
+                    var tx = db.transaction(storeName, 'readonly');
+                    var store = tx.objectStore(storeName);
+                    var all = [];
+                    var req2 = store.openCursor();
+                    req2.onsuccess = function(e) {
+                        var cursor = e.target.result;
+                        if (cursor) { all.push({ key: cursor.key, value: cursor.value }); cursor.continue(); }
+                        else { resolve(all); }
+                    };
+                    req2.onerror = function(e) { reject(e.target.error); };
+                });
+                for (var ei = 0; ei < entries.length; ei++) {
+                    var entry = entries[ei];
+                    var val = entry.value;
+                    var isBinary = (val instanceof ArrayBuffer) || (val instanceof Uint8Array) || (ArrayBuffer.isView && ArrayBuffer.isView(val));
+                    var bytes;
+                    if (val instanceof ArrayBuffer) { bytes = new Uint8Array(val); }
+                    else if (val instanceof Uint8Array) { bytes = val; }
+                    else if (ArrayBuffer.isView && ArrayBuffer.isView(val)) { bytes = new Uint8Array(val.buffer, val.byteOffset, val.byteLength); }
+                    else { bytes = new TextEncoder().encode(JSON.stringify(val)); isBinary = false; }
+                    var CHUNK = 8192; var b64Parts = [];
+                    for (var bi = 0; bi < bytes.length; bi += CHUNK) {
+                        var chunk = bytes.subarray(bi, bi + CHUNK);
+                        var str = '';
+                        for (var ci2 = 0; ci2 < chunk.length; ci2++) str += String.fromCharCode(chunk[ci2]);
+                        b64Parts.push(str);
+                    }
+                    manifest.push({ dbName: dbInfo.name, storeName: storeName, key: entry.key, type: isBinary ? 'binary' : 'json', data: btoa(b64Parts.join('')) });
+                    totalSize += bytes.length;
                 }
-                manifest.push({ url: requests[ri].url, contentType: resp.headers.get('Content-Type') || 'application/octet-stream', cacheName: llmCaches[ci], data: btoa(b64Parts.join('')) });
-                totalSize += bytes.length;
             }
+            db.close();
         }
-        if (!manifest.length) { if (typeof showToast === 'function') showToast('❌ LLM файлы не найдены.', 3000); return; }
+        if (!manifest.length) { if (typeof showToast === 'function') showToast('❌ LLM файлы не найдены в IndexedDB.', 3000); return; }
         var cfg = _eitiLLMGetConfig();
         var fname = 'eiti-llm-' + (cfg.model || 'cache').replace(/[^a-z0-9]/gi, '-') + '.eitillm';
         var blob = new Blob([JSON.stringify({
-            _eitillm: true, version: '1.0',
+            _eitillm: true, version: '2.0',
             exported: new Date().toISOString(),
             model: cfg.model || 'unknown',
             files: manifest.length,
@@ -14412,9 +14439,9 @@ window.eitiLLMClearAll = async function() {
             }
 
             newSend.onclick = function() {
-                var txt = input.value.trim();
-                if (window._eitiLLMModeActive && window._eitiLLMEngine) {
-                    window.eitiLLMSendFromChat(txt);
+                var _txt = input ? input.value.trim() : '';
+                if (window._eitiLLMModeActive && window._eitiLLMEngine && _txt) {
+                    window.eitiLLMSendFromChat(_txt);
                     return;
                 }
                 doSend();
