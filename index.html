@@ -14411,10 +14411,23 @@ window.eitiLLMClearAll = async function() {
                 }
             }
 
-            newSend.onclick = doSend;
-            // Enter на клавиатуре → только новая строка, отправка только кнопкой ↑
+            newSend.onclick = function() {
+                var txt = input.value.trim();
+                if (window._eitiLLMModeActive && window._eitiLLMEngine) {
+                    window.eitiLLMSendFromChat(txt);
+                    return;
+                }
+                doSend();
+            };
+            // Enter: в LLM режиме — отправить; иначе — новая строка
             input.addEventListener('keydown', function(e) {
                 if (e.key === 'Enter') {
+                    if (window._eitiLLMModeActive && window._eitiLLMEngine) {
+                        e.preventDefault();
+                        var txt = input.value.trim();
+                        if (txt) window.eitiLLMSendFromChat(txt);
+                        return;
+                    }
                     e.preventDefault();
                     var s = input.selectionStart, end = input.selectionEnd;
                     input.value = input.value.substring(0, s) + '\n' + input.value.substring(end);
