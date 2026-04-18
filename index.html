@@ -12613,6 +12613,16 @@ window.eitiToggleLLM = function() {
         // Сохраняем движок в памяти, не выгружаем — быстрое переключение
         window._eitiLLMEnginePaused = _eitiLLMEngine || window._eitiLLMEnginePaused;
         _eitiLLMEngine = null;
+        // Сбрасываем LLM-режим чата — движок недоступен
+        if (_eitiLLMModeActive) {
+            _eitiLLMModeActive = false;
+            var _pauseBtn = document.getElementById('llm-mode-btn');
+            var _pauseSend = document.getElementById('send');
+            var _pauseInput = document.getElementById('input');
+            if (_pauseBtn) { _pauseBtn.style.opacity = '0.5'; _pauseBtn.style.background = ''; _pauseBtn.style.borderRadius = ''; }
+            if (_pauseSend) _pauseSend.style.background = '';
+            if (_pauseInput) _pauseInput.placeholder = 'Введите сообщение... (Enter — отправить)';
+        }
         _eitiLLMUpdateStatus('⏸ Приостановлено', cfg.model);
         _eitiLLMUpdateToggleBtn(true, cfg.model);
         if (typeof showToast === 'function') showToast('⏸ LLM выключен', 2000);
