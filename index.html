@@ -9249,11 +9249,11 @@
             { id:"kb_econ_c01", triggers:["что такое инфляция","почему растут цены"], answer:"📈 Инфляция — рост общего уровня цен. Причины: больше денег в экономике, рост спроса, рост издержек производства. 2–3% в год — норма. Выше 10% — проблема.", category:"econ" },
             { id:"kb_econ_c02", triggers:["что такое ВВП","ввп страны"], answer:"🏭 ВВП (валовый внутренний продукт) — суммарная стоимость всех товаров и услуг, произведённых в стране за год. Мерило размера экономики, но не уровня жизни.", category:"econ" },
             { id:"kb_econ_c03", triggers:["что такое процентная ставка","ключевая ставка цб"], answer:"🏦 Ключевая ставка ЦБ — цена денег для банков. Поднимают → кредиты дорожают → экономика замедляется → инфляция падает. Снижают → кредиты дешевеют → экономика ускоряется.", category:"econ" },
-            // 🧬 Биология — дополнение
-            { id:"kb_bio_c01", triggers:["что такое митоз","митоз и мейоз"], answer:"🧬 Митоз — деление клетки на две идентичные дочерние (рост, восстановление). Мейоз — деление с уменьшением хромосом вдвое (для половых клеток). Итог мейоза: 4 уникальные клетки.", category:"biology" },
-            { id:"kb_bio_c02", triggers:["как работает иммунная система","иммунитет"], answer:"🛡️ Иммунная система: врождённый (быстрый, неспецифический) и адаптивный (медленный, точный). Т-лимфоциты убивают заражённые клетки, В-лимфоциты производят антитела.", category:"biology" },
-            { id:"kb_bio_c03", triggers:["что такое фотосинтез","как работает фотосинтез"], answer:"☀️ Фотосинтез: 6CO₂ + 6H₂O + свет → C₆H₁₂O₆ + 6O₂. Хлорофилл поглощает свет, энергия идёт на синтез глюкозы. Весь кислород атмосферы — побочный продукт фотосинтеза.", category:"biology" },
-            { id:"kb_bio_c04", triggers:["что такое эволюция","теория эволюции дарвин"], answer:"🦎 Эволюция — изменение популяций через естественный отбор. Мутации создают разнообразие, среда отбирает выживших. За 3.8 млрд лет — от одноклеточных до человека.", category:"biology" },
+            // 🧬 Биология — уникальные темы
+            { id:"kb_bio_u01", triggers:["клеточное дыхание","как клетка получает энергию"], answer:"⚡ Клеточное дыхание: глюкоза + O₂ → АТФ + CO₂ + H₂O. Главный этап — цикл Кребса в митохондриях. 1 молекула глюкозы даёт 36–38 молекул АТФ — универсальной «валюты» энергии.", category:"biology" },
+            { id:"kb_bio_u02", triggers:["что такое вирус","как устроен вирус"], answer:"🦠 Вирус — не клетка: только нуклеиновая кислота (ДНК или РНК) + белковая оболочка (капсид). Не может размножаться самостоятельно — захватывает рибосомы клетки-хозяина. Размер: 20–300 нм.", category:"biology" },
+            { id:"kb_bio_u03", triggers:["законы менделя","генетика мендель"], answer:"🌱 Мендель открыл три закона наследственности (1865): доминирование, расщепление (3:1), независимое комбинирование. Опыты на горохе. Понятия ген/аллель/гомозиготность — его наследие.", category:"biology" },
+            { id:"kb_bio_u04", triggers:["что такое crispr","редактирование генома"], answer:"✂️ CRISPR-Cas9 — «молекулярные ножницы». Белок Cas9 точно разрезает ДНК в нужном месте, направляемый РНК-гидом. Нобелевская премия 2020. Применения: лечение рака, наследственных болезней.", category:"biology" },
             // ⚗️ Химия — дополнение  
             { id:"kb_chem_c01", triggers:["что такое pH","шкала ph кислотность"], answer:"⚗️ pH — логарифмическая шкала кислотности (0–14). pH 7 = нейтральный (вода). Ниже 7 = кислота (лимон ≈ 2). Выше 7 = щёлочь (мыло ≈ 10). Кровь человека: 7.35–7.45.", category:"chemistry" },
             { id:"kb_chem_c02", triggers:["периодическая таблица менделеев","как устроена периодическая таблица"], answer:"📊 Периодическая таблица Менделеева (1869): элементы упорядочены по атомному номеру. Период = горизонтальный ряд (одинаковое число оболочек). Группа = одинаковое число валентных электронов.", category:"chemistry" },
@@ -9286,6 +9286,25 @@
             { id:"kb_wisd_c01", triggers:["что значит велантрим","философия велантрим"], answer:"🌿 Велантрим — философия симбиоза человека и технологий. Три принципа: живой поток (непрерывное развитие), биоэтос (этика жизни), мицелий (связи важнее узлов).", category:"wisdom" },
             { id:"kb_wisd_c02", triggers:["мудрость востока","восточная философия"], answer:"☯️ Три столпа восточной мудрости: у-вэй (недеяние, Лао-цзы), анатман (нет постоянного «я», Будда), дзансин (остаточный ум, дзен). Все три говорят: отпусти контроль.", category:"wisdom" },
             { id:"kb_wisd_c03", triggers:["принцип парето","правило 80 20"], answer:"📊 Принцип Парето: 80% результатов дают 20% усилий. 20% клиентов дают 80% прибыли. 20% привычек дают 80% здоровья. Найди своё 20% — и фокусируйся на нём.", category:"wisdom" },
+            // 💡 Мудрость — расширенный раздел
+            { id:"kb_wisd_w01", triggers:["бритва оккама","принцип простоты"], answer:"🪒 Бритва Оккама: «Не умножай сущностей сверх необходимого». Из двух объяснений выбирай простейшее. Используется в науке, медицине, инженерии — и повседневной жизни.", category:"wisdom" },
+            { id:"kb_wisd_w02", triggers:["закон мёрфи","всё что может пойти не так"], answer:"😅 Закон Мёрфи: «Всё, что может пойти не так — пойдёт». Следствия: если всё идёт хорошо, вы что-то упустили. Практика: всегда закладывай запас на ошибки и непредвиденное.", category:"wisdom" },
+            { id:"kb_wisd_w03", triggers:["эффект даннинга крюгера","почему неопытные самоуверены"], answer:"🧠 Эффект Даннинга-Крюгера: некомпетентные переоценивают себя — не знают, чего не знают. Эксперты — недооценивают, видя сложность. Осознание собственного незнания — признак настоящего ума.", category:"wisdom" },
+            { id:"kb_wisd_w04", triggers:["состояние потока чиксентмихайи","как войти в поток"], answer:"🌊 Михай Чиксентмихайи: «поток» — полное погружение, когда задача чуть сложнее навыков. Время исчезает, усилие становится радостью. Найди деятельность где сложность ≈ мастерство.", category:"wisdom" },
+            { id:"kb_wisd_w05", triggers:["антихрупкость нассим талеб","что такое антихрупкость"], answer:"💪 Нассим Талеб: хрупкое разрушается от стресса. Прочное — не меняется. Антихрупкое — усиливается. Мышцы, иммунитет, предпринимательский опыт — антихрупки. Ищи стресс, который улучшает.", category:"wisdom" },
+            { id:"kb_wisd_w06", triggers:["правило 10000 часов","глубокая практика мастерство"], answer:"⏰ Малкольм Гладуэлл: 10 000 часов целенаправленной практики → экспертность. Важно: не просто повторять, а практиковать осознанно — с обратной связью и работой над слабыми местами.", category:"wisdom" },
+            { id:"kb_wisd_w07", triggers:["когнитивные искажения список","ошибки мышления топ"], answer:"🧩 Главные когнитивные искажения: подтверждения (ищем согласное), доступности (переоцениваем яркое), якорения (первое число искажает все), чрезмерной уверенности, слепого пятна (не видим своих искажений).", category:"wisdom" },
+            { id:"kb_wisd_w08", triggers:["мышление первыми принципами","как мыслить как маск"], answer:"🔬 Мышление первыми принципами (Маск, Аристотель): разложи проблему на базовые истины. Не «как это обычно делают?», а «из чего состоит?». Так взламываются любые допущения и конкурентные барьеры.", category:"wisdom" },
+            { id:"kb_wisd_w09", triggers:["икигай что такое","японская философия смысл"], answer:"⛩️ Икигай — пересечение 4 кругов: что ты любишь, что умеешь, что нужно миру, за что платят. На Окинаве (самый высокий % долгожителей) люди с чётким икигаем живут активно до 90+.", category:"wisdom" },
+            { id:"kb_wisd_w10", triggers:["закон паркинсона","дедлайны и продуктивность"], answer:"⏳ Закон Паркинсона: «Работа расширяется, чтобы заполнить всё отведённое время». Дедлайн 2 дня → сделаешь за 2 дня. 2 часа → за 2 часа. Ставь жёсткие искусственные ограничения.", category:"wisdom" },
+            { id:"kb_wisd_w11", triggers:["медленное и быстрое мышление","система 1 2 канеман"], answer:"🧠 Канеман: Система 1 — быстрая, интуитивная, часто ошибается. Система 2 — медленная, аналитическая, ленивая. Большинство решений — Система 1. Включай Систему 2 для важных и необратимых выборов.", category:"wisdom" },
+            { id:"kb_wisd_w12", triggers:["принцип составного процента привычки","атомные привычки"], answer:"📈 Составной процент (компаундинг): 1% улучшения каждый день = 37× через год. 1% ухудшения = 0.03×. Джеймс Клир «Атомные привычки»: маленькие изменения, накопленные — колоссальный результат.", category:"wisdom" },
+            { id:"kb_wisd_w13", triggers:["теория игр дилемма заключённого","нэш равновесие"], answer:"♟️ Дилемма заключённого: каждый игрок рационально выбирает предательство, хотя оба выиграли бы от кооперации. В повторяющейся игре побеждает «tit-for-tat»: сначала доверяй, потом отвечай зеркально.", category:"wisdom" },
+            { id:"kb_wisd_w14", triggers:["минимизация сожалений безос","принцип решений джефф"], answer:"💭 Джефф Безос: «Представь себя в 80 лет. О чём ты больше пожалеешь — что рискнул и проиграл, или что не рискнул?» Минимизируй будущие сожаления, а не текущий дискомфорт.", category:"wisdom" },
+            { id:"kb_wisd_w15", triggers:["принцип негативной визуализации стоицизм","прамемо мори"], answer:"💀 Негативная визуализация (стоики): представляй потерю того, что имеешь — здоровья, близких, работы. Это не пессимизм, а инструмент: осознав ценность, живёшь с благодарностью здесь и сейчас.", category:"wisdom" },
+            { id:"kb_wisd_w16", triggers:["сила нарратива истории","переписать нарратив"], answer:"📖 Человек — животное нарратива. Мы объясняем мир историями, а не данными. Любая история: герой, конфликт, трансформация. Умение переписать свой внутренний нарратив = умение изменить жизнь.", category:"wisdom" },
+            { id:"kb_wisd_w17", triggers:["правило двух минут","продуктивность малые действия"], answer:"⚡ Правило Дэвида Аллена: если действие занимает меньше 2 минут — сделай сейчас. Откладывание мелких дел потребляет больше умственной энергии, чем их выполнение. Inbox zero принципа GTD.", category:"wisdom" },
+            { id:"kb_wisd_w18", triggers:["мудрость жизни разных культур","универсальные принципы"], answer:"🌿 Мудрость разных культур сходится: живи в настоящем (буддизм), действуй по природе (стоицизм), ищи смысл (Франкл), твори добро (конфуцианство), будь благодарен (позитивная психология). Путей много — суть одна.", category:"wisdom" },
             // 🌍 География
             { id:"kb_geo_c01", triggers:["самая длинная река","самая длинная река в мире"], answer:"🌊 Нил (6 853 км) и Амазонка (6 400 км) спорят за звание самой длинной реки. Нил — по длине, Амазонка — по объёму воды (20% всей пресной воды на Земле).", category:"geo" },
             { id:"kb_geo_c02", triggers:["самый высокий вулкан","вулкан мауна кеа"], answer:"🌋 Мауна-Кеа (Гавайи) — самый высокий вулкан от основания: 10 210 м (из них 4 205 м над уровнем моря). Эверест — лишь высочайшая точка над уровнем моря.", category:"geo" },
@@ -11821,6 +11840,16 @@
 var EITI_AI_OFFLINE_KEY = 'eiti_ai_offline_config_v1';
 var eitiSemanticModel = null;
 
+// Timeout-wrapper для dynamic import — защита от зависания CDN
+function _eitiImportWithTimeout(url, ms) {
+    return Promise.race([
+        import(url),
+        new Promise(function(_, reject) {
+            setTimeout(function() { reject(new Error('import timeout ' + ms + 'ms: ' + url)); }, ms);
+        })
+    ]);
+}
+
 function eitiGetAIConfig() {
     try {
         var cfg = localStorage.getItem(EITI_AI_OFFLINE_KEY);
@@ -11900,17 +11929,11 @@ async function eitiActivateAIOffline() {
 
         // FIX: кэшируем модуль глобально — избегаем 4x повторного CDN-импорта
         if (!window._eitiTransformersModule) {
-            function _importWithTimeout(url, ms) {
-                return Promise.race([
-                    import(url),
-                    new Promise(function(_, reject) { setTimeout(function() { reject(new Error('timeout')); }, ms); })
-                ]);
-            }
             try {
-                window._eitiTransformersModule = await _importWithTimeout('https://cdn.jsdelivr.net/npm/@xenova/transformers@2.17.2', 30000);
+                window._eitiTransformersModule = await _eitiImportWithTimeout('https://cdn.jsdelivr.net/npm/@xenova/transformers@2.17.2', 30000);
             } catch(cdnError) {
                 try {
-                    window._eitiTransformersModule = await _importWithTimeout('https://unpkg.com/@xenova/transformers@2.17.2', 30000);
+                    window._eitiTransformersModule = await _eitiImportWithTimeout('https://unpkg.com/@xenova/transformers@2.17.2', 30000);
                 } catch(e2) {
                     console.warn('[EITI] Transformers.js недоступен:', e2.message);
                     showToast('⚠️ AI-офлайн недоступен — продолжаем без него');
@@ -12139,7 +12162,7 @@ window.eitiToggleAIOffline = function() {
             eitiUpdateAIStatus('⏳ Включение…', cfg.model);
             var _toggleImport = window._eitiTransformersModule
                 ? Promise.resolve(window._eitiTransformersModule)
-                : import('https://cdn.jsdelivr.net/npm/@xenova/transformers@2.17.2');
+                : _eitiImportWithTimeout('https://cdn.jsdelivr.net/npm/@xenova/transformers@2.17.2', 30000);
             _toggleImport.then(function(m){
                 window._eitiTransformersModule = m;
                 m.env.useBrowserCache = true;
@@ -12150,7 +12173,7 @@ window.eitiToggleAIOffline = function() {
                 localStorage.setItem(EITI_AI_OFFLINE_KEY, JSON.stringify(cfg));
                 eitiUpdateAIStatus('✅ Готов', cfg.model);
                 showToast('✅ Transformers.js включён: ' + cfg.model);
-            }).catch(function(e){ eitiUpdateAIStatus('⚠️ Ошибка', cfg.model); });
+            }).catch(function(e){ eitiUpdateAIStatus('⚠️ Ошибка: ' + (e.message||e), cfg.model); });
         }
     }
     eitiRenderAIToggle();
@@ -12177,11 +12200,19 @@ document.addEventListener('DOMContentLoaded', function() {
                 return;
             }
             eitiUpdateAIStatus('⏳ Восстановление из кэша…', cfg.model);
+            // Общий таймер: если вся цепочка не завершилась за 90с — сдаёмся
+            var _restoreTimer = setTimeout(function() {
+                if (!eitiSemanticModel) {
+                    eitiUpdateAIStatus('⚠️ Таймаут восстановления', cfg.model);
+                    if (typeof showToast === 'function') showToast('⚠️ AI Offline не загрузился — зайдите в Настройки → AI Offline.', 5000);
+                }
+            }, 90000);
             var _restoreImport = window._eitiTransformersModule
                 ? Promise.resolve(window._eitiTransformersModule)
-                : import('https://cdn.jsdelivr.net/npm/@xenova/transformers@2.17.2');
+                : _eitiImportWithTimeout('https://cdn.jsdelivr.net/npm/@xenova/transformers@2.17.2', 30000);
             _restoreImport
                 .then(function(m) {
+                    window._eitiTransformersModule = m;
                     m.env.useBrowserCache = true;
                     return m.pipeline('feature-extraction', 'Xenova/' + cfg.model, {
                         progress_callback: function(p) {
@@ -12190,11 +12221,13 @@ document.addEventListener('DOMContentLoaded', function() {
                     });
                 })
                 .then(function(model) {
+                    clearTimeout(_restoreTimer);
                     eitiSemanticModel = model;
                     eitiUpdateAIStatus('✅ Готов', cfg.model);
                     if (typeof showToast === 'function') showToast('✅ AI Offline готов: ' + cfg.model, 2000);
                 })
                 .catch(function(e) {
+                    clearTimeout(_restoreTimer);
                     eitiUpdateAIStatus('⚠️ Ошибка загрузки', cfg.model);
                     if (typeof showToast === 'function') showToast('⚠️ AI Offline: ошибка. Настройки → AI Offline.', 4000);
                 });
@@ -12204,11 +12237,11 @@ document.addEventListener('DOMContentLoaded', function() {
             eitiUpdateAIStatus('⏳ Загружается…', cfg.model);
             var _fallbackImport = window._eitiTransformersModule
                 ? Promise.resolve(window._eitiTransformersModule)
-                : import('https://cdn.jsdelivr.net/npm/@xenova/transformers@2.17.2');
+                : _eitiImportWithTimeout('https://cdn.jsdelivr.net/npm/@xenova/transformers@2.17.2', 30000);
             _fallbackImport
                 .then(function(m) { window._eitiTransformersModule = m; m.env.useBrowserCache=true; return m.pipeline('feature-extraction','Xenova/'+cfg.model); })
                 .then(function(model) { eitiSemanticModel=model; eitiUpdateAIStatus('✅ Готов',cfg.model); })
-                .catch(function() { eitiUpdateAIStatus('⚠️ Ошибка загрузки',cfg.model); });
+                .catch(function(e) { eitiUpdateAIStatus('⚠️ Ошибка загрузки: ' + (e.message||e),cfg.model); });
         });
 });
 
